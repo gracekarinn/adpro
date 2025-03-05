@@ -17,7 +17,7 @@ class OrderRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        orderRepository = new OrderRepository;
+        orderRepository = new OrderRepository();
 
         List<Product> products = new ArrayList<>();
         Product product1 = new Product();
@@ -43,7 +43,7 @@ class OrderRepositoryTest {
         Order order = orders.get(1);
         Order result = orderRepository.save(order);
 
-        Order findResult = orderRepository.findbyId(orders.get(1).getId());
+        Order findResult = orderRepository.findById(orders.get(1).getId());
         assertEquals(order.getId(), result.getId());
         assertEquals(order.getId(), findResult.getId());
         assertEquals(order.getOrderTime(), findResult.getOrderTime());
@@ -58,7 +58,7 @@ class OrderRepositoryTest {
         Order newOrder = new Order(order.getId(), order.getProducts(), order.getOrderTime(), order.getAuthor(), OrderStatus.SUCCESS.getValue());
         Order result = orderRepository.save(newOrder);
 
-        Order findResult = orderRepository.findById(order.get(1).getId());
+        Order findResult = orderRepository.findById(orders.get(1).getId());
         assertEquals(order.getId(), result.getId());
         assertEquals(order.getId(), findResult.getId());
         assertEquals(order.getOrderTime(), findResult.getOrderTime());
@@ -72,7 +72,7 @@ class OrderRepositoryTest {
             orderRepository.save(order);
         }
 
-        Order findResult = orderRepository.findById(order.get(1).getId());
+        Order findResult = orderRepository.findById(orders.get(1).getId());
         assertEquals(orders.get(1).getId(), findResult.getId());
         assertEquals(orders.get(1).getOrderTime(), findResult.getOrderTime());
         assertEquals(orders.get(1).getAuthor(), findResult.getAuthor());
@@ -90,7 +90,7 @@ class OrderRepositoryTest {
     }
 
     @Test
-    void testFindAllByAuthorIfAllLowercase() {
+    void testFindAllByAuthorIfAuthorCorrect() {
         for (Order order : orders) {
             orderRepository.save(order);
         }
