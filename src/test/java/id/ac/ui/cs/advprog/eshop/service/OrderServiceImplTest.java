@@ -57,7 +57,7 @@ class OrderServiceImplTest {
     @Test
     void testCreateOrderIfAlreadyExists() {
         Order order = orders.get(1);
-        doReturn(order).when(orderRepository).save(order);
+        doReturn(order).when(orderRepository).findById(order.getId());
 
         assertNull(orderService.createOrder(order));
         verify(orderRepository, times(0)).save(order);
